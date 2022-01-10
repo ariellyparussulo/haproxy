@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  server1:
+    build:
+      context: server
+    ports:
+      - "3000"
+    networks:
+      - "server-network"
+    environment:
+      CONTAINER_NAME: server1
+
+  server2:
+    build:
+      context: server
+    ports:
+      - "3000"
+    networks:
+      - "server-network"
+    environment:
+      CONTAINER_NAME: server2
+
+  server3:
+    build:
+      context: server
+    ports:
+      - "3000"
+    networks:
+      - "server-network"
+    environment:
+      CONTAINER_NAME: server3
+
+  proxy:
+    build:
+      context: haproxy
+    ports:
+      - "80:80"
+      - "8404:8404"
+    networks:
+      - "server-network"
+
+networks:
+  server-network:

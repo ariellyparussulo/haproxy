@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  websocket_server_1:
+    build: server
+    ports:
+      - "8080"
+    networks:
+      - "websocket-network"
+
+  websocket_server_2:
+    build: server
+    ports:
+      - "8080"
+    networks:
+      - "websocket-network"
+
+  websocket_server_3:
+    build: server
+    ports:
+      - "8080"
+    networks:
+      - "websocket-network"
+
+  haproxy:
+    build: haproxy
+    ports:
+      - "80:80"
+    networks:
+      - "websocket-network"
+
+networks:
+  websocket-network:
